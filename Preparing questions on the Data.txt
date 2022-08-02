@@ -1,0 +1,35 @@
+#Preparing the questions on the Data
+
+After observing the data, we make questions on it.
+
+Following are the questions.
+
+Q.1) Best top 3 Category App less in Size both type (Free and Paid).
+
+Q.2) Percentage of Free and Paid App.
+
+Q.3) Correlation between Year and Minimum android version required.
+
+Q.4) Distribution of App by Category.
+
+Q.5) Most review apps category wise.
+
+Q.6) Number of apps present in play store category wise(Free & Paid).
+
+Q.7) Pearson Correlation – Price, Install, Size, Reviews, Rating.
+
+Q.8) Distribution of App by Content Rating.
+
+Q.9) Mean of (Size, Review and Install) of each Category.
+
+Q.10) Rating distribution of Apps.
+
+Q.11) Variation of App with respect to Year.
+
+Q.12) Top five Revenue App.
+
+Q.13) Distribution of Category by Install.
+
+Q.14) Percentage of Positive, Negative and Neutral.
+
+Q.15) Sentiment Polarity vs Sentiment Subjectivity.
