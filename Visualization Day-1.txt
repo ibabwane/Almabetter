@@ -1,0 +1,42 @@
+# Day 3 visualization
+
+#Q1 Best top 3 Category app less in size dor both type
+
+top_category_app = df_new.groupby(['Category', 'Type']).agg({'Size_in_mb' : 'mean'}).sort_values(by = 'Category').reset_index()
+top_category_app.head()
+
+fig = px.histogram(top_category_app, x="Size_in_mb", y="Category",
+             color='Type', barmode='group',
+             height=700,title='Category vs Mean Size')
+fig.show()
+
+
+
+#Q2 Percentage of free and paid app
+
+free, paid = 0, 0
+for elem in df_new.Type:
+  if elem == 'Free':
+    free = free + 1
+  else:
+    paid = paid +1
+
+print(free, paid)
+
+free_percent = round((free / (free + paid)) * 100, 2)
+paid_percent = round((paid / (free + paid)) * 100, 2)
+
+f= 'free = ' + str(free_percent) + '%'
+p = 'paid = ' + str(paid_percent) + '%'
+label = [f, p]
+x = np.array([free, paid])
+plt.pie(x,  labels = label)
+
+
+
+#Q3 correlation between year and minimum android version required 
+df_android=df_new.groupby(['year']).agg({'min_Android_Ver':'median'}).reset_index()
+
+fig = px.scatter(df_android, x="year", y="min_Android_Ver", trendline="ols",title='Year vs Minimum Android Version')
+fig.show()
+
