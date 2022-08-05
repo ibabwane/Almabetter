@@ -1,0 +1,25 @@
+# Visualization Day 2
+
+
+# Q4 Distribution of App by Category
+df_distri=df_new.groupby(['Category']).agg({'App':'count'}).reset_index()
+df_distri.head()
+
+fig1 = px.pie(df_distri, values='App', names='Category', title='Distribution of App by Category')
+fig1.show()
+
+
+
+#Q5 Most review apps category wise
+df_most=df_new.groupby(['Category']).agg({'Reviews':'max'}).reset_index()
+
+fig=px.bar(df_most,x='Reviews', y='Category',title='Category vs Review',text_auto='.2s',height=800)
+fig.show()
+
+
+
+# Q6 Number of apps present in play store category wise(free & paid)
+df_num = df_new.groupby(['Category','Type']).agg({'App' : 'count'}).sort_values(by = 'Category').reset_index()
+
+fig = px.bar(df_num, x="App", y="Category", color="Type", title="Number of apps present in play store category wise(free & paid)", height=800,text_auto='.2s')
+fig.show()
