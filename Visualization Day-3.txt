@@ -1,0 +1,24 @@
+# visualization Day-3
+
+#Q7 Pearson Correlation – price, install, size, reviews, rating
+
+corr_variable = ['dollar_price', 'Installs', 'Size_in_mb', 'Reviews', 'Rating']
+df_pearson_corr = df_new[corr_variable]
+df_pearson_corr = df_pearson_corr.corr()
+
+plt.figure(figsize=(15,7))
+sns.heatmap(df_pearson_corr,fmt='.2f',linewidths=0.1,annot=True).set(title='Pearson Correlation – price, install, size, reviews, rating')
+
+
+#Q8	Distribution of App by Content Rating
+df_content_rat=df_new.groupby(['Content Rating']).agg({'App':'count'}).reset_index()
+
+fig = px.bar(df_content_rat, x="Content Rating", y="App", color="Content Rating", text="Content Rating", text_auto='.2s',title='Distribution of App by Content Rating')
+fig.show()
+
+
+#Q9 rating distribution of apps
+plt.figure(figsize=(15,7))
+rating_distribution = sns.countplot(x="Rating" , data=df_new, palette = "Set1")
+rating_distribution.set_xticklabels(rating_distribution.get_xticklabels(), rotation=90, ha="right")
+plt.title("Rating distribution of Apps")
