@@ -1,0 +1,59 @@
+#Visualization Day - 4
+
+
+
+#Q10 rating distribution of apps
+plt.figure(figsize=(15,7))
+rating_distribution = sns.countplot(x="Rating" , data=df_new, palette = "Set1")
+rating_distribution.set_xticklabels(rating_distribution.get_xticklabels(), rotation=90, ha="right")
+plt.title("Rating distribution of Apps")
+
+
+#Q11 Variation of App with respect to Year
+df_year=df_new.groupby(['year']).agg({'App':'count'}).reset_index()
+fig = px.bar(df_year, x="year", y="App", color="year", text="year", text_auto='.2s',title='Apps vs Year')
+fig.show()
+
+
+#Q12 top five Revenue App
+def get_revenue(a,b):
+  return a*b
+df_new['Revenue'] = df_new.apply(lambda x: get_revenue(x['Installs'],x['dollar_price']), axis = 1)
+df_revenue=df_new.groupby(['App']).agg({'Revenue':'mean'}).sort_values(by='Revenue',ascending=False).reset_index()
+df_revenue[:5]
+fig = px.bar(df_revenue[:5], x="App", y="Revenue", color="App", text="App", text_auto='.2s',title='Revenue of The Top Five App')
+fig.show()
+
+
+#Q13 Distribution of Category by install
+df_install=df_new.groupby('Category')[['Installs']].sum().sort_values(by='Installs', ascending=False).reset_index()
+fig = px.bar(df_install, x="Installs", y="Category",color="Category",title='Category vs Installs', height=800)
+fig.show()
+
+
+
+#Data cleaning of user review dataset
+
+df_Review_data = pd.read_csv('/content/User Reviews.csv')
+df_Review_data.info()
+
+df_Review_data.drop_duplicates( keep='first', inplace=True, ignore_index=True)   # delete Duplicates Values
+df_Review_data.dropna(inplace=True)  # Removes All null values
+
+cleaning is Done!!!!!
+
+Now do some visualization on this Data.......
+
+#Q14 Percentage of Positive, negative and neutral 
+df_Review_data['Sentiment'].value_counts().plot.pie(figsize = (15,10), autopct='%1.1f%%',title='Percentage of Positive, negative, neutral')
+plt.legend()
+
+
+#Q15 Percentage of Positive, negative and neutral 
+df_Review_data['Sentiment'].value_counts().plot.pie(figsize = (15,10), autopct='%1.1f%%',title='Percentage of Positive, negative, neutral')
+plt.legend()
+
+
+Visualization for all the Questions are done!!!!!..
+  
+
